@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\CreateController;
+use App\Http\Controllers\AuthorController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,10 +17,31 @@ use App\Http\Controllers\BookController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('top-books', [
+//         'title'=> 'TOP-BOOKS',
+    
+//     ]);
+// });
+// Route::get('/author', function () {
+//     return view('author', [
+//         'title'=> 'AUTHOR',
+    
+//     ]);
+// });
+// Route::get('/new-book', function () {
+//     return view('new-book', [
+//         'title'=> 'NEW RELEASE',
+    
+//     ]);
+// });
+
+Route::get('/', [CreateController::class, 'index']);
+Route::get('/new-book', [CreateController::class, 'release']);
+Route::get('/author', [AuthorController::class, 'index']);
 
 
-Route::resource('book', [BookController::class]);
+// Auth::routes();
+
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 

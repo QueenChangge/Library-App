@@ -14,7 +14,7 @@ class BookController extends Controller
      */
     public function index()
     {
-        return 'this is index page';
+        //
     }
 
     /**
@@ -24,7 +24,7 @@ class BookController extends Controller
      */
     public function create()
     {
-        return 'test';
+        //
     }
 
     /**

@@ -1,10 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\Author;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use App\Models\Create;
 
-class AuthorController extends Controller
+class CreateController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,10 +14,10 @@ class AuthorController extends Controller
      */
     public function index()
     {
-        $data = Author::paginate(5);
-        return view('author', [
-            'authors'=> $data,
-            'title'=> 'AUTHOR'
+        $data = Create::paginate(20);
+        return view('top-books', [
+            'creates'=> $data,
+            'title'=> 'TOP-BOOKS'
         ]);
     }
 
@@ -47,9 +48,13 @@ class AuthorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function release()
     {
-        //
+        $data = Create::oldest()->get();
+        return view('new-book', [
+            'creates'=> $data,
+            'title'=> 'NEW RELEASE'
+        ]);
     }
 
     /**
@@ -86,3 +91,5 @@ class AuthorController extends Controller
         //
     }
 }
+
+

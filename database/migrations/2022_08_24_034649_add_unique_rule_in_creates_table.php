@@ -13,12 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('authors', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->text('description');
-            $table->string('image');
-            $table->timestamps();
+        Schema::table('creates', function (Blueprint $table) {
+            $table->string('name')->unique()->change();
         });
     }
 
@@ -29,6 +25,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('authors');
+        Schema::table('creates', function (Blueprint $table) {
+            $table->dropUnique('creates_name_unique');
+        });
     }
 };
